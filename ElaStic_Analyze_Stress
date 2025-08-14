@@ -151,29 +151,25 @@ if (mthd == 'Stress'):
         if (LC == 'N'):
             Lag_strain_list = ['36','37','38','39','40','41']
 
-    if (ordr == 3):
-        if (LC == 'CI'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
-        if (LC == 'CII'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
-        if (LC == 'HI'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
-        if (LC == 'HII'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
-        if (LC == 'RI'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
-        if (LC == 'RII'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
-        if (LC == 'TI'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
-        if (LC == 'TII'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
-        if (LC == 'O'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
-        if (LC == 'M'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
-        if (LC == 'N'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
+    if ordr == 3:
+        if (LC == 'CI' or \
+            LC == 'CII'):
+            Lag_strain_list = ['45']
+        if (LC == 'HI' or \
+            LC == 'HII'):
+            Lag_strain_list = ['45', '46']
+        if (LC == 'RI' or \
+            LC == 'RII'):
+            Lag_strain_list = ['45', '46']
+        if (LC == 'TI' or \
+            LC == 'TII'):
+            Lag_strain_list = ['45', '46', '47']
+        if LC == 'O':
+            Lag_strain_list = ['45', '46', '47', '48']
+        if LC == 'M':
+            Lag_strain_list = ['36', '37', '38', '39', '40', '45', '46', '47', '48']
+        if LC == 'N':
+            Lag_strain_list = ['36', '37', '38', '39', '40', '41', '45', '46', '47', '48']
 
 cont1= 0
 for i in Lag_strain_list:
