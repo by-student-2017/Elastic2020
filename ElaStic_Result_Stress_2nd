@@ -204,6 +204,13 @@ elif(207 <= SGN and SGN <= 230): # Cubic I
     NoD= 1
 
 else: sys.exit('\n.... Oops ERROR: WRONG Space-Group Number !?!?!?    \n')
+
+## When it just doesn't work.
+#with open('ElaStic_3rd.in', 'r') as OBJ:
+#    RoD = OBJ.read().strip().split()
+#if len(RoD) % 13 != 0:
+#    sys.exit('\n.... Oops ERROR: "ElaStic_3rd.in is invalid (not divisible by 13) \n')
+#NoD = len(RoD) // 13
 #--------------------------------------------------------------------------------------------------
 
 lineseparator=' '
