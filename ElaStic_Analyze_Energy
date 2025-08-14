@@ -27,6 +27,7 @@ import math
 import subprocess
 import shutil
 import matplotlib.pyplot as plt
+from math import factorial
 
 #%!%!%--- CONSTANTS ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
 
@@ -344,8 +345,8 @@ for i in range(1, ECs+1):
             if (abs(strain[len(strain)-1]-emax) < 1.e-7):
                 strain.pop()
                 energy.pop()
-    fD.close()
-    fE.close()
+    FD.close()
+    FE.close()
     
     #-- Plotting ----------------------------------------------------------------------------------
     fig, ax = plt.subplots()
@@ -363,9 +364,17 @@ for i in range(1, ECs+1):
         ax.plot(x,y,'o-',label="n="+key)
         ax.set_xlabel('max_strain')
         ax.set_ylabel('CV error')
-
+        
     ax.legend()
-    plt.title('plot for '+ Dstn+'_'+LSi_dic[l]+', n = Order of polynomial fit')
+    LSi_dic = {
+        1: 'xx',
+        2: 'yy',
+        3: 'zz',
+        4: 'yz',
+        5: 'xz',
+        6: 'xy'
+    }
+    plt.title('plot for '+ Dstn+'_'+LSi_dic[i]+', n = Order of polynomial fit')
 plt.show()
 
 os.chdir('../')
