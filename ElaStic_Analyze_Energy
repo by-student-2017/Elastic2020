@@ -385,10 +385,18 @@ for i in range(1, ECs+1):
     else:
         Dstn = 'Dst' +str(i)
     #print(Dstn+'    eta_max    Fit_order',file=fri)
-    if cve[orth][0]:
-        print(f"{Dstn}    {max(cve[orth][0]):.6f}    {ordr}", file=fri)
+    eta_max_list = []
+    
+    for nth in ['2nd', '4th', '6th']:
+        if nth in cve and cve[nth][0]:
+            eta_max_list.append(max(cve[nth][0]))
+    
+    if eta_max_list:
+        eta_max = max(eta_max_list)
     else:
-        print(f"{Dstn}     0.000000    {ordr}", file=fri)
+        eta_max = 0.030
+    
+    print(f"{Dstn}  {max(eta_max_list):.6f}  {ordr}", file=fri)
 fri.close()
 #--------------------------------------------------------------------------------------------------
 os.system('rm -f Energy-vs-Strain/Grace.par')
