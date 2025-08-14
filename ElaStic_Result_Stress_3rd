@@ -700,8 +700,8 @@ if (len(sigma) != 6*NoD):
     sys.exit('\n.... Oops ERROR: Something is WRONG in the "ElaStic_3rd.in" file !?!?!?\n')
 
 sigma = np.array(sigma)
-C     = np.linalg.lstsq(Matrix,sigma)
-#C = np.linalg.lstsq(Matrix, sigma, rcond=None)[0]
+#C     = np.linalg.lstsq(Matrix,sigma)
+C = np.linalg.lstsq(Matrix, sigma, rcond=None)[0]
 
 fo = open('ElaStic_3rd.out','w')
 print( '    The output of ElaStic code                                            \n'\
@@ -884,4 +884,4 @@ fo.close()
 #--------------------------------------------------------------------------------------------------
 os.chdir('../')
 #os.system('cp -f Stress-vs-Strain/ElaStic_3rd.out .')
-shutil.copyfile('Energy-vs-Strain/ElaStic_3rd.out', 'ElaStic_3rd.out')
+shutil.copyfile('Stress-vs-Strain/ElaStic_3rd.out', 'ElaStic_3rd.out')
