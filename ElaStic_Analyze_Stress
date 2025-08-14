@@ -199,23 +199,27 @@ if (mthd == 'Stress'):
 
     if ordr == 3:
         if LC == 'CI':
-            Lag_strain_list = ['36', '42', '43', '44']  # NoD = 4, Dst04
+            Lag_strain_list = ['36', '42', '43']  # NoD = 3, Dst03, Matrix 18
         elif LC == 'CII':
-            Lag_strain_list = ['36', '42', '43', '44', '45']  # NoD = 5, Dst05
-        elif LC == 'HI' or LC == 'HII':
-            Lag_strain_list = ['36', '38', '42', '43', '44', '45']  # NoD = 6, Dst06
-        elif LC == 'RI' or LC == 'RII':
-            Lag_strain_list = ['36', '38', '42', '43', '44', '45', '46']  # NoD = 7, Dst07
-        elif LC == 'TI' or LC == 'TII':
-            Lag_strain_list = ['36', '38', '42', '43', '44', '45', '46']  # NoD = 7, Dst07
+            Lag_strain_list = ['36', '42']  # NoD = 2, Dst02, Matrix 12
+        elif LC == 'HI':
+            Lag_strain_list = ['36', '38', '42']  # NoD = 3, Dst03, Matrix 18
+        elif LC == 'HII':
+            Lag_strain_list = ['36', '38']  # NoD = 2, Dst02, Matrix 12
+        elif LC == 'RI':
+            Lag_strain_list = ['36', '38', '42']  # NoD = 3, Dst03, Matrix 18
+        elif LC == 'RII':
+            Lag_strain_list = ['36', '38']  # NoD = 2, Dst02, Matrix 12
+        elif LC == 'TI':
+            Lag_strain_list = ['36', '38', '42']  # NoD = 3, Dst03, Matrix 18
+        elif LC == 'TII':
+            Lag_strain_list = ['36', '38']  # NoD = 2, Dst02, Matrix 12
         elif LC == 'O':
-            Lag_strain_list = ['36', '38', '40', '42', '43', '44', '45', '46', '47']  # NoD = 9, Dst09
+            Lag_strain_list = ['36', '42', '43']  # NoD = 3, Dst03, Matrix 18
         elif LC == 'M':
-            Lag_strain_list = ['36', '37', '38', '39', '40', '42', '43', '44', '45', '46', '47']  # NoD = 11, Dst11
+            Lag_strain_list = ['36', '38', '42']  # NoD = 3, Dst03, Matrix 18
         elif LC == 'N':
-            Lag_strain_list = ['36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48']  # NoD = 13, Dst13
-        else:
-            sys.exit('\n.... Oops ERROR: Unknown lattice class LC = ' + LC + '\n')
+            Lag_strain_list = ['36', '38']  # NoD = 2, Dst02, Matrix 12
 
 cont1= 0
 for i in Lag_strain_list:
