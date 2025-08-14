@@ -350,13 +350,14 @@ for i in range(1, ECs+1):
     
     #-- Plotting ----------------------------------------------------------------------------------
     fig, ax = plt.subplots()
-#plot for SUM(Cij)
-#   for key in fcc.keys():
-#       x = np.array(fcc[key][0])
-#       y = np.array(fcc[key][1])
-#       ax.plot(x,y,'o-',label="n="+key)
-#       ax.set_xlabel('max strain')
-#       ax.set_ylabel('SUM(Cij)')
+    
+    #plot for SUM(Cij)
+    #   for key in fcc.keys():
+    #       x = np.array(fcc[key][0])
+    #       y = np.array(fcc[key][1])
+    #       ax.plot(x,y,'o-',label="n="+key)
+    #       ax.set_xlabel('max strain')
+    #       ax.set_ylabel('SUM(Cij)')
         
     for key in cve.keys():
         x = np.array(cve[key][0])
@@ -384,7 +385,15 @@ for i in range(1, ECs+1):
     else:
         Dstn = 'Dst' +str(i)
     #print(Dstn+'    eta_max    Fit_order',file=fri)
-    print(f"{Dstn}    {emax:.6f}    {ordr}", file=fri)
+    for j in range(ordr+4, ordr-1, -2):
+        if  (j == 2): nth = '2nd'
+        elif(j == 3): nth = '3rd'
+        else:
+            nth = str(j) + 'th'
+        if cve[nth][0]:
+            print(f"{Dstn}    {max(cve[nth][0]):.6f}    {j}    # eta_max nth", file=fri)
+        else:
+            print(f"{Dstn}    0.000000    {j}    # eta_max nth,  WARNING: no data", file=fri)
 fri.close()
 #--------------------------------------------------------------------------------------------------
 os.system('rm -f Energy-vs-Strain/Grace.par')
