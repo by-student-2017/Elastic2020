@@ -1016,47 +1016,47 @@ if (mthd == 'Stress'):
     if (ordr == 2):
         if (LC == 'CI' or \
             LC == 'CII'):
-            Lag_strain_list = ['36']
+            Lag_strain_list = ['36']  # NoD = 1, Dst01
         if (LC == 'HI' or \
             LC == 'HII'):
-            Lag_strain_list = ['36','38']
+            Lag_strain_list = ['36','38']  # NoD = 2, Dst02
         if (LC == 'RI' or \
             LC == 'RII'):
-            Lag_strain_list = ['36','38']
+            Lag_strain_list = ['36','38']  # NoD = 2, Dst02
         if (LC == 'TI' or \
             LC == 'TII'):
-            Lag_strain_list = ['36','38']
+            Lag_strain_list = ['36','38']  # NoD = 2, Dst02
         if (LC == 'O'):
-            Lag_strain_list = ['36','38','40']
+            Lag_strain_list = ['36','38','40']  # NoD = 3, Dst03
         if (LC == 'M'):
-            Lag_strain_list = ['36','37','38','39','40']
+            Lag_strain_list = ['36','37','38','39','40']  # NoD = 5, Dst05
         if (LC == 'N'):
-            Lag_strain_list = ['36','37','38','39','40','41']
+            Lag_strain_list = ['36','37','38','39','40','41']  # NoD = 6, Dst06
 
     # The section from CI to M is undeveloped (i.e., ALL), so I've filled it in for now. Please check it out.
     if (ordr == 3):
         if (LC == 'CI'):
-            Lag_strain_list = ['36', '42', '43', '44']
+            Lag_strain_list = ['36', '42', '43', '44']  # NoD = 4, Dst04
         if (LC == 'CII'):
-            Lag_strain_list = ['36', '42', '43', '44', '45']
+            Lag_strain_list = ['36', '42', '43', '44', '45']  # NoD = 5, Dst05
         if (LC == 'HI'):
-            Lag_strain_list = ['36', '38', '42', '43', '44', '45']
+            Lag_strain_list = ['36', '38', '42', '43', '44', '45']  # NoD = 6, Dst06
         if (LC == 'HII'):
-            Lag_strain_list = ['36', '38', '42', '43', '44', '45', '46']
+            Lag_strain_list = ['36', '38', '42', '43', '44', '45', '46']  # NoD = 7, Dst07
         if (LC == 'RI'):
-            Lag_strain_list = ['36', '38', '42', '43', '44', '45', '46']
+            Lag_strain_list = ['36', '38', '42', '43', '44', '45', '46']  # NoD = 7, Dst07
         if (LC == 'RII'):
-            Lag_strain_list = ['36', '38', '42', '43', '44', '45', '46']
+            Lag_strain_list = ['36', '38', '42', '43', '44', '45', '46']  # NoD = 7, Dst07
         if (LC == 'TI'):
-            Lag_strain_list = ['36', '38', '42', '43', '44', '45', '46']
+            Lag_strain_list = ['36', '38', '42', '43', '44', '45', '46']  # NoD = 7, Dst07
         if (LC == 'TII'):
-            Lag_strain_list = ['36', '38', '42', '43', '44', '45', '46', '47']
+            Lag_strain_list = ['36', '38', '42', '43', '44', '45', '46']  # NoD = 7, Dst07
         if (LC == 'O'):
-            Lag_strain_list = ['36', '38', '40', '42', '43', '44', '45', '46', '47']
+            Lag_strain_list = ['36', '38', '40', '42', '43', '44', '45', '46', '47']  # NoD = 9, Dst09
         if (LC == 'M'):
-            Lag_strain_list = ['36', '37', '38', '39', '40', '42', '43', '44', '45', '46', '47']
+            Lag_strain_list = ['36', '37', '38', '39', '40', '42', '43', '44', '45', '46', '47']  # NoD = 11, Dst11
         if (LC == 'N'):
-            Lag_strain_list = ['36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48']
+            Lag_strain_list = ['36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48']  # NoD = 13, Dst13
 
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
 #%!% ----------------------------------- Structures maker ----------------------------------- %!%!#
