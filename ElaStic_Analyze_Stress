@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
 #%%% --------------------------------- ElaStic_Analyze_Stress -------------------------------- %%%#
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
@@ -211,12 +211,12 @@ for i in Lag_strain_list:
             r = 2*mdr*s/(NoP-1)
             if (s==0): r = 0.00001
 
-            le = zeros(6)
+            le = np.zeros(6)
             for i in range(6):
                 le[i] = Ls_list[i]
             Lv = r*le
             #--- Lag. to phy. strain (eta = eps + 0.5*eps*esp) and making the deformation matrix --
-            eta_matrix      = zeros((3,3))
+            eta_matrix      = np.zeros((3,3))
 
             eta_matrix[0,0] = Lv[0]
             eta_matrix[0,1] = Lv[5]/2.
@@ -232,22 +232,22 @@ for i in Lag_strain_list:
 
             norm      =1.0
             eps_matrix=eta_matrix
-            if (linalg.norm(eta_matrix) > 0.7):
+            if (np.linalg.norm(eta_matrix) > 0.7):
                 sys.exit('\n.... Oops ERROR: Too large deformation!\n') 
 
             while( norm > 1.e-10 ):
-                x          = eta_matrix - dot(eps_matrix, eps_matrix)/2.
-                norm       = linalg.norm(x - eps_matrix)      
+                x          = eta_matrix - np.dot(eps_matrix, eps_matrix)/2.
+                norm       = np.linalg.norm(x - eps_matrix)      
                 eps_matrix = x
 
             #--- Calculating the deformation matrix -----------------------------------------------
-            i_matrix   = array([[1., 0., 0.],
+            i_matrix   = np.array([[1., 0., 0.],
                                 [0., 1., 0.], 
                                 [0., 0., 1.]])
             def_matrix = i_matrix + eps_matrix
 
             #--- Reading the physical stresses from the output files ------------------------------
-            sig = zeros((3,3))
+            sig = np.zeros((3,3))
 
             if (cod == 'ESPRESSO'): 
                 if (os.path.exists(Dstn_num +'.out')):
@@ -482,7 +482,7 @@ for i in range(1, NoD+1):
                     Yfit = np.polyval(np.polyfit(etatmp, strtmp, j), strain[k])
                     S = S + (Yfit-Y)**2
 
-                CV = sqrt(S/len(strain))
+                CV = np.sqrt(S/len(strain))
 
                 cve[nth][0].append(emax)
                 cve[nth][1].append(CV)

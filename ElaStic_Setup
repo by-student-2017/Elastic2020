@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
 #%!%!% ------------------------------ ElaStic_Setup_ESPRESSO ------------------------------- %!%!%#
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
@@ -26,6 +26,8 @@ import glob
 import shutil
 import subprocess
 import numpy as np
+from math import degrees
+from math import acos, degrees
 
 #%!%!%--- DICTIONARIS ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
 Ls_Dic={                       \
@@ -699,12 +701,9 @@ K_POINTS = EIF[EIF.upper().find('K_POINTS'):-1].strip()
 a1 = celldm1 * np.sqrt(CP[0,0]**2 + CP[0,1]**2 + CP[0,2]**2)
 a2 = celldm1 * np.sqrt(CP[1,0]**2 + CP[1,1]**2 + CP[1,2]**2)
 a3 = celldm1 * np.sqrt(CP[2,0]**2 + CP[2,1]**2 + CP[2,2]**2)
-#alpha = degrees(math.acos((CP[1,0]*CP[2,0]+CP[1,1]*CP[2,1]+CP[1,2]*CP[2,2])*celldm1**2/(a2*a3)))
-#beta  = degrees(math.acos((CP[0,0]*CP[2,0]+CP[0,1]*CP[2,1]+CP[0,2]*CP[2,2])*celldm1**2/(a1*a3)))
-#gamma = degrees(math.acos((CP[0,0]*CP[1,0]+CP[0,1]*CP[1,1]+CP[0,2]*CP[1,2])*celldm1**2/(a1*a2)))
-alpha = degrees(np.acos((CP[1,0]*CP[2,0]+CP[1,1]*CP[2,1]+CP[1,2]*CP[2,2])*celldm1**2/(a2*a3)))
-beta  = degrees(np.acos((CP[0,0]*CP[2,0]+CP[0,1]*CP[2,1]+CP[0,2]*CP[2,2])*celldm1**2/(a1*a3)))
-gamma = degrees(np.acos((CP[0,0]*CP[1,0]+CP[0,1]*CP[1,1]+CP[0,2]*CP[1,2])*celldm1**2/(a1*a2)))
+alpha = degrees(math.acos((CP[1,0]*CP[2,0]+CP[1,1]*CP[2,1]+CP[1,2]*CP[2,2])*celldm1**2/(a2*a3)))
+beta  = degrees(math.acos((CP[0,0]*CP[2,0]+CP[0,1]*CP[2,1]+CP[0,2]*CP[2,2])*celldm1**2/(a1*a3)))
+gamma = degrees(math.acos((CP[0,0]*CP[1,0]+CP[0,1]*CP[1,1]+CP[0,2]*CP[1,2])*celldm1**2/(a1*a2)))
 
 si = open('sgroup.in','w')
 print('P',file=si)
@@ -1091,16 +1090,16 @@ for i in Lag_strain_list:
             sys.exit('\n.... Oops ERROR: Too large deformation!\n') 
 
         while( norm > 1.e-10 ):
-            x          = eta_matrix - dot(eps_matrix, eps_matrix)/2.
+            x          = eta_matrix - np.dot(eps_matrix, eps_matrix)/2.
             norm       = np.linalg.norm(x - eps_matrix)      
             eps_matrix = x
 
         #--- Calculating the M_new matrix ---------------------------------------------------------
-        i_matrix   = array([[1., 0., 0.],
+        i_matrix   = np.array([[1., 0., 0.],
                             [0., 1., 0.], 
                             [0., 0., 1.]])
         def_matrix = i_matrix + eps_matrix
-        M_new      = dot(M_old, def_matrix)
+        M_new      = np.dot(M_old, def_matrix)
         #------------------------------------------------------------------------------------------
         cont2 = cont2 + 1
         if (cont2 < 10):
