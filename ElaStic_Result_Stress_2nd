@@ -522,7 +522,7 @@ if (len(sigma) != 6*NoD):
 
 sigma = np.array(sigma)
 ci    = np.linalg.lstsq(Matrix,sigma,rcond=None)
-C     = zeros((6,6))
+C     = np.zeros((6,6))
 
 #-- Cubic structures ------------------------------------------------------------------------------
 if (LC == 'CI' or \
