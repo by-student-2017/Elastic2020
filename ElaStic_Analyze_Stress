@@ -534,7 +534,7 @@ for i in range(1, NoD+1):
     eta_max_lists = {l: [] for l in range(1, 7)}
     
     for l in range(1, 7):
-        for nth in ['1st', '3rd', '5th']:
+        for nth in ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th']:
             if nth in cve_all[Dstn][LSi_dic[l]] and cve_all[Dstn][LSi_dic[l]][nth]:
                 eta_max_lists[l].append(cve_all[Dstn][LSi_dic[l]][nth][0])
     

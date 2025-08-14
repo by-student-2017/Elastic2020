@@ -387,7 +387,7 @@ for i in range(1, ECs+1):
     #print(Dstn+'    eta_max    Fit_order',file=fri)
     eta_max_list = []
     
-    for nth in ['2nd', '4th', '6th']:
+    for nth in ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th']:
         if nth in cve and cve[nth][0]:
             eta_max_list.append(max(cve[nth][0]))
     
