@@ -18,16 +18,15 @@
 # 
 #__________________________________________________________________________________________________
 
-from sys   import stdin
-from numpy import *
-import numpy as np
-import subprocess
-import os.path
-import shutil
-import math
-import time
-import sys
 import os
+import sys
+import time
+import math
+import glob
+import shutil
+import subprocess
+import numpy as np
+from datetime import datetime
 
 #%!%!%--- SUBROUTINS AND FUNCTIONS ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
 def C9nmop(m,n,o,p):
@@ -42,7 +41,7 @@ def C9nmop(m,n,o,p):
 #--------------------------------------------------------------------------------------------------
 
 def myabs(x):
-    y=sqrt(x**2)
+    y=np.sqrt(x**2)
     return y
 #--------------------------------------------------------------------------------------------------
 
@@ -68,7 +67,7 @@ for i in range(0,79):
 
 #%!%!%--- Reading the Transformation_Matrix file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
 TM_f = open('Transformation_Matrix', 'r')
-TM = zeros((3,3))
+TM = np.zeros((3,3))
 
 for i in range(3):
     line = TM_f.readline()
@@ -94,13 +93,13 @@ if (os.path.exists(infile)):
     for i in range(15):
         inf.readline()
         
-    C6o = zeros((6,6))
+    C6o = np.zeros((6,6))
     for i in range(6):
         line = inf.readline()
         for j in range(6):
             C6o[i,j] = line.split()[j]
 
-    C9o = zeros((3,3,3,3))
+    C9o = np.zeros((3,3,3,3))
     #%!%!%--- Making the C9o Matrix ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
     C9o[0,0,0,0] = C6o[0,0]; C9o[0,0,0,1] = C6o[0,5]; C9o[0,0,0,2] = C6o[0,4]
     C9o[0,0,1,0] = C6o[0,5]; C9o[0,0,1,1] = C6o[0,1]; C9o[0,0,1,2] = C6o[0,3]
@@ -138,8 +137,8 @@ if (os.path.exists(infile)):
     C9o[2,2,1,0] = C6o[2,5]; C9o[2,2,1,1] = C6o[1,2]; C9o[2,2,1,2] = C6o[2,3]
     C9o[2,2,2,0] = C6o[2,4]; C9o[2,2,2,1] = C6o[2,3]; C9o[2,2,2,2] = C6o[2,2]
     #----------------------------------------------------------------------------------------------
-    C6n = zeros((6,6))
-    C9n = zeros((3,3,3,3))
+    C6n = np.zeros((6,6))
+    C9n = np.zeros((3,3,3,3))
     C9nmop(0,0,0,0) ;  C6n[0,0] = C9n[0,0,0,0]
     C9nmop(0,0,1,1) ;  C6n[0,1] = C9n[0,0,1,1] ; C6n[1,0] = C6n[0,1] 
     C9nmop(0,0,2,2) ;  C6n[0,2] = C9n[0,0,2,2] ; C6n[2,0] = C6n[0,2]
@@ -172,7 +171,7 @@ if (os.path.exists(infile)):
     GV = ((C6n[0,0]+C6n[1,1]+C6n[2,2])-(C6n[0,1]+C6n[0,2]+C6n[1,2])+3*(C6n[3,3]+C6n[4,4]+C6n[5,5]))/15
     EV = (9*BV*GV)/(3*BV+GV)
     nuV= (1.5*BV-GV)/(3*BV+GV)
-    S  = linalg.inv(C6n)
+    S  = np.linalg.inv(C6n)
     BR = 1/(S[0,0]+S[1,1]+S[2,2]+2*(S[0,1]+S[0,2]+S[1,2]))
     GR =15/(4*(S[0,0]+S[1,1]+S[2,2])-4*(S[0,1]+S[0,2]+S[1,2])+3*(S[3,3]+S[4,4]+S[5,5]))
     ER = (9*BR*GR)/(3*BR+GR)
@@ -186,17 +185,26 @@ if (os.path.exists(infile)):
 
 #%!%!%--- Writing the output file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
 fo = open(outfile, 'w')
-print( '    The output of ElaStic_xyz2XYZ code                                    \n'\
-             '    Today is '+ time.asctime() +                                         '\n'\
-             '                                                                          \n'\
-             '                                                                          \n'\
-             '    Elastic constant in new cartesian coordinate system                   \n'\
-             '    It has been changed based on transformation matrix.                   \n'\
-             '                                                                          \n'\
-             '    Transformation Matrix:                                                \n',file=fo)
-
-for i in range(3):
-    print('    '+str(TM[i,0])+'  '+str(TM[i,1])+'  '+str(TM[i,2]),file=fo)
+#print( '    The output of ElaStic_xyz2XYZ code                                    \n'\
+#             '    Today is '+ time.asctime() +                                         '\n'\
+#             '                                                                          \n'\
+#             '                                                                          \n'\
+#             '    Elastic constant in new cartesian coordinate system                   \n'\
+#             '    It has been changed based on transformation matrix.                   \n'\
+#             '                                                                          \n'\
+#             '    Transformation Matrix:                                                \n',file=fo)
+#
+#for i in range(3):
+#    print('    '+str(TM[i,0])+'  '+str(TM[i,1])+'  '+str(TM[i,2]),file=fo)
+#
+with open(outfile, 'w') as fo:
+    fo.write('    The output of ElaStic_xyz2XYZ code\n')
+    fo.write(f'    Today is {datetime.now().isoformat()}\n\n')
+    fo.write('    Elastic constant in new cartesian coordinate system\n')
+    fo.write('    It has been changed based on transformation matrix.\n\n')
+    fo.write('    Transformation Matrix:\n')
+    for i in range(3):
+        fo.write(f'    {TM[i,0]:.6f}  {TM[i,1]:.6f}  {TM[i,2]:.6f}\n')
              
 print('\n    Elastic constant (stiffness) matrix in GPa:                          \n',file=fo)
 
@@ -204,6 +212,7 @@ for i in range(0,6):
     print('',file=fo)
     for j in range(0,6):
         print('%11.1f'%(C6n[i,j]),file=fo,end=' ')
+        # fo.write('%11.1f ' % C6n[i,j]) # < python 3.6
 
 print('\n\n    Elastic compliance matrix in 1/GPa: \n',file=fo)
 
@@ -214,25 +223,37 @@ for i in range(0,6):
 
 print('\n'+ lineseparator +'\n',file=fo)
 
-print('    Voigt bulk  modulus, B_V = {0}  GPa'.format('%8.2f'%(BV)),file=fo)
-print('    Voigt shear modulus, G_V = {0}  GPa'.format('%8.2f'%(GV)) + '\n',file=fo)
+#print('    Voigt bulk  modulus, B_V = {0}  GPa'.format('%8.2f'%(BV)),file=fo)
+#print('    Voigt shear modulus, G_V = {0}  GPa'.format('%8.2f'%(GV)) + '\n',file=fo)
+print(f'    Voigt bulk  modulus, B_V = {BV:8.2f}  GPa', file=fo)
+print(f'    Voigt shear modulus, G_V = {GV:8.2f}  GPa\n', file=fo)
 
-print('    Reuss bulk  modulus, B_R = {0}  GPa'.format('%8.2f'%(BR)),file=fo)
-print('    Reuss shear modulus, G_R = {0}  GPa'.format('%8.2f'%(GR)) + '\n',file=fo)
+#print('    Reuss bulk  modulus, B_R = {0}  GPa'.format('%8.2f'%(BR)),file=fo)
+#print('    Reuss shear modulus, G_R = {0}  GPa'.format('%8.2f'%(GR)) + '\n',file=fo)
+print(f'    Reuss bulk  modulus, B_R = {BR:8.2f}  GPa', file=fo)
+print(f'    Reuss shear modulus, G_R = {GR:8.2f}  GPa\n', file=fo)
 
-print('    Hill bulk  modulus,  B_H = {0}  GPa'.format('%8.2f'%(BH)),file=fo)
-print('    Hill shear modulus,  G_H = {0}  GPa'.format('%8.2f'%(GH)),file=fo)
+#print('    Hill bulk  modulus,  B_H = {0}  GPa'.format('%8.2f'%(BH)),file=fo)
+#print('    Hill shear modulus,  G_H = {0}  GPa'.format('%8.2f'%(GH)),file=fo)
+print(f'    Hill bulk  modulus,  B_H = {BH:8.2f}  GPa', file=fo)
+print(f'    Hill shear modulus,  G_H = {GH:8.2f}  GPa', file=fo
 
 print('\n'+ lineseparator +'\n',file=fo)
 
-print('    Voigt Young modulus,  E_V = {0}  GPa'.format('%8.2f'%(EV)),file=fo)
-print('    Voigt Poisson ratio, nu_V = {0}'     .format('%8.2f'%(nuV)) + '\n',file=fo)
+#print('    Voigt Young modulus,  E_V = {0}  GPa'.format('%8.2f'%(EV)),file=fo)
+#print('    Voigt Poisson ratio, nu_V = {0}'     .format('%8.2f'%(nuV)) + '\n',file=fo)
+print(f'    Voigt Young modulus,  E_V = {EV:8.2f}  GPa', file=fo)
+print(f'    Voigt Poisson ratio, nu_V = {nuV:8.2f}\n', file=fo)
 
-print('    Reuss Young modulus,  E_R = {0}  GPa'.format('%8.2f'%(ER)),file=fo)
-print('    Reuss Poisson ratio, nu_R = {0}'     .format('%8.2f'%(nuR)) + '\n',file=fo)
+#print('    Reuss Young modulus,  E_R = {0}  GPa'.format('%8.2f'%(ER)),file=fo)
+#print('    Reuss Poisson ratio, nu_R = {0}'     .format('%8.2f'%(nuR)) + '\n',file=fo)
+print(f'    Reuss Young modulus,  E_R = {ER:8.2f}  GPa', file=fo)
+print(f'    Reuss Poisson ratio, nu_R = {nuR:8.2f}\n', file=fo)
 
-print('    Hill Young modulus,   E_H = {0}  GPa'.format('%8.2f'%(EH)),file=fo)
-print('    Hill Poisson ratio,  nu_H = {0}'     .format('%8.2f'%(nuH)),file=fo)
+#print('    Hill Young modulus,   E_H = {0}  GPa'.format('%8.2f'%(EH)),file=fo)
+#print('    Hill Poisson ratio,  nu_H = {0}'     .format('%8.2f'%(nuH)),file=fo)
+print(f'    Hill Young modulus,   E_H = {EH:8.2f}  GPa', file=fo)
+print(f'    Hill Poisson ratio,  nu_H = {nuH:8.2f}', file=fo)
 
 print('\n'+ lineseparator +'\n',file=fo)
 
@@ -242,7 +263,8 @@ print('\n'+ lineseparator +'\n',file=fo)
 
 print('    Eigenvalues of elastic constant (stiffness) matrix:   \n',file=fo)
 
-eigval=linalg.eig(C6n)
+#eigval=np.linalg.eig(C6n)
+eigval = np.linalg.eigvalsh(C6n)
 for i in range(6):
     print('%16.1f' % float(eigval[0][i]),file=fo)
 

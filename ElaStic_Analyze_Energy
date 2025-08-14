@@ -18,18 +18,14 @@
 # 
 #__________________________________________________________________________________________________
 
-from sys   import stdin
-from numpy import *
-from math import *
-import numpy as np
-import subprocess
-import warnings
-import os.path
-import shutil
-import copy
-import math
-import sys
 import os
+import sys
+import copy
+import warnings
+import numpy as np
+import math
+import subprocess
+import shutil
 import matplotlib.pyplot as plt
 
 #%!%!%--- CONSTANTS ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
@@ -209,7 +205,12 @@ for i in range(1, ECs+1):
     os.chdir('../')
 #--------------------------------------------------------------------------------------------------
 
-warnings.simplefilter('ignore', np.RankWarning)
+try:
+    from numpy.lib.polynomial import RankWarning  # NumPy >= 1.24
+except ImportError:
+    from numpy import RankWarning  # NumPy <= 1.23
+
+warnings.simplefilter('ignore', RankWarning)
 
 #%!%!%--- Directory management ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
 if (os.path.exists('Energy-vs-Strain_old')):
@@ -292,7 +293,7 @@ for i in range(1, ECs+1):
             emax  = max(strain)
             emin  = min(strain)
             emax  = max(abs(emin),abs(emax))
-            coeffs= polyfit(strain, energy, j)
+            coeffs= np.polyfit(strain, energy, j)
             if (ordr == 2):
                 Cij  = coeffs[j-2]*CONV/V0         # in GPa unit 
             if (ordr == 3):
@@ -328,10 +329,10 @@ for i in range(1, ECs+1):
                         etatmp.append(strain[l])
                         enetmp.append(energy[l])
 
-                Yfit = polyval(polyfit(etatmp,enetmp, j), strain[k])
+                Yfit = np.polyval(np.polyfit(etatmp,enetmp, j), strain[k])
                 S    = S + (Yfit-Y)**2
 
-            CV = sqrt(S/len(strain))
+            CV = math.sqrt(S/len(strain))
 
             cve[nth][0].append(emax)
             cve[nth][1].append(CV)

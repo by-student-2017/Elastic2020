@@ -18,16 +18,14 @@
 # 
 #__________________________________________________________________________________________________
 
-from sys   import stdin
-from numpy import *
-import numpy as np
-import subprocess
-import os.path
-import shutil
-import glob
-import math
-import sys
 import os
+import sys
+import time
+import math
+import glob
+import shutil
+import subprocess
+import numpy as np
 
 #%!%!%--- DICTIONARIS ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
 Ls_Dic={                       \
@@ -296,14 +294,14 @@ if (ibrav == 0):
                             matrix!!!!!\n")
                 nb += 1
             break
-    CP = zeros((3,3))
+    CP = np.zeros((3,3))
     if (nx < 3):
         sys.exit('\n.... Oops ERROR: "CELL_PARAMETERS" are NOT complete in the input file !?!?!?'\
                  '\n                 Visit http://www.quantum-espresso.org \n')
     for i in range(3):
         for j in range(3):
             CP[i,j] = M[i][j]
-    celldm1 = linalg.norm(CP[0,:])
+    celldm1 = np.linalg.norm(CP[0,:])
     CP /= celldm1
     celldm1 /= 0.5292
 #-- Cubic structures ------------------------------------------------------------------------------
@@ -314,7 +312,7 @@ if (ibrav == 1 or ibrav == 2 or ibrav == 3):
     celldm5 = 0.
     celldm6 = 0.
 
-    CP = zeros((3,3))
+    CP = np.zeros((3,3))
     if (ibrav == 1): # cP
         CP[0,0] = 1.
         CP[0,1] = 0.
@@ -358,12 +356,12 @@ if (ibrav == 4):
     celldm5 = 0.
     celldm6 =-.5
 
-    CP      = zeros((3,3))
+    CP      = np.zeros((3,3))
     CP[0,0] = 1.
     CP[0,1] = 0.
     CP[0,2] = 0.
     CP[1,0] =-.5
-    CP[1,1] = sqrt(3.)/2.
+    CP[1,1] = np.sqrt(3.)/2.
     CP[1,2] = 0.
     CP[2,0] = 0.
     CP[2,1] = 0.
@@ -384,12 +382,12 @@ if (ibrav == 5):
     celldm5 = celldm4 
     celldm6 = celldm4
 
-    CP      = zeros((3,3))
-    CP[0,0] = sqrt((1.-celldm4)/2.)
-    CP[0,1] =-CP[0,0]/sqrt(3.)
-    CP[0,2] = sqrt(1.-(2./3.*(1.-celldm4)))
+    CP      = np.zeros((3,3))
+    CP[0,0] = np.sqrt((1.-celldm4)/2.)
+    CP[0,1] =-CP[0,0]/np.sqrt(3.)
+    CP[0,2] = np.sqrt(1.-(2./3.*(1.-celldm4)))
     CP[1,0] = 0.
-    CP[1,1] = 2.*CP[0,0]/sqrt(3.)
+    CP[1,1] = 2.*CP[0,0]/np.sqrt(3.)
     CP[1,2] = CP[0,2]
     CP[2,0] =-CP[0,0]
     CP[2,1] = CP[0,1]
@@ -408,7 +406,7 @@ if (ibrav == 6 or ibrav == 7):
     celldm5 = .0
     celldm6 = .0
 
-    CP = zeros((3,3))
+    CP = np.zeros((3,3))
     if (ibrav == 6):
         CP[0,0] = 1.
         CP[0,1] = 0.
@@ -447,7 +445,7 @@ if (ibrav == 8 or ibrav == 9 or ibrav == 10 or ibrav == 11):
     celldm5 = .0
     celldm6 = .0
 
-    CP = zeros((3,3))
+    CP = np.zeros((3,3))
     if (ibrav == 8):  # Orthorhombic
         CP[0,0] = 1.
         CP[0,1] = 0.
@@ -510,13 +508,13 @@ if (ibrav == 12 or ibrav == 13):
     celldm5 = .0
     celldm6 = .0
 
-    CP = zeros((3,3))
+    CP = np.zeros((3,3))
     if (ibrav == 12):  # mP
         CP[0,0] = 1.
         CP[0,1] = 0.
         CP[0,2] = 0.
         CP[1,0] = celldm2*celldm4
-        CP[1,1] = celldm2*sqrt(1.-celldm4*celldm4)
+        CP[1,1] = celldm2*np.sqrt(1.-celldm4*celldm4)
         CP[1,2] = 0.
         CP[2,0] = 0.
         CP[2,1] = 0.
@@ -526,7 +524,7 @@ if (ibrav == 12 or ibrav == 13):
         CP[0,1] = 0.
         CP[0,2] =-0.5*celldm3
         CP[1,0] = celldm2*celldm4
-        CP[1,1] = celldm2*sqrt(1.-celldm4*celldm4)
+        CP[1,1] = celldm2*np.sqrt(1.-celldm4*celldm4)
         CP[1,2] = 0.
         CP[2,0] = 0.5
         CP[2,1] = 0.
@@ -561,17 +559,17 @@ if (ibrav == 14):
     if (celldm6 < -1 or celldm6 > 1.):
         sys.exit('\n.... Oops ERROR: "celldm(6)" is WRONG !?!?!?    \n')
     
-    CP      = zeros((3,3))
+    CP      = np.zeros((3,3))
     CP[0,0] = 1.
     CP[0,1] = 0.
     CP[0,2] = 0.
     CP[1,0] = celldm2*celldm6
-    CP[1,1] = celldm2*sqrt(1.-celldm6**2.)
+    CP[1,1] = celldm2*np.sqrt(1.-celldm6**2.)
     CP[1,2] = 0.
     CP[2,0] = celldm3*celldm5
-    CP[2,1] =(celldm3*(celldm4-celldm5*celldm6))/(sqrt(1.-celldm6**2.))
-    CP[2,2] = celldm3*sqrt(1.-celldm4**2.-celldm5**2.-celldm6**2.+\
-              2.*celldm4*celldm5*celldm6)/(sqrt(1.-celldm6**2.))
+    CP[2,1] =(celldm3*(celldm4-celldm5*celldm6))/(np.sqrt(1.-celldm6**2.))
+    CP[2,2] = celldm3*np.sqrt(1.-celldm4**2.-celldm5**2.-celldm6**2.+\
+              2.*celldm4*celldm5*celldm6)/(np.sqrt(1.-celldm6**2.))
 
 #--------------------------------------------------------------------------------------------------
 for i, key in enumerate(SYSTEMlist):
@@ -698,12 +696,15 @@ K_POINTS = EIF[EIF.upper().find('K_POINTS'):-1].strip()
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%--- Writing the "sgroup.in" file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
-a1 = celldm1 * sqrt(CP[0,0]**2 + CP[0,1]**2 + CP[0,2]**2)
-a2 = celldm1 * sqrt(CP[1,0]**2 + CP[1,1]**2 + CP[1,2]**2)
-a3 = celldm1 * sqrt(CP[2,0]**2 + CP[2,1]**2 + CP[2,2]**2)
-alpha = degrees(math.acos((CP[1,0]*CP[2,0]+CP[1,1]*CP[2,1]+CP[1,2]*CP[2,2])*celldm1**2/(a2*a3)))
-beta  = degrees(math.acos((CP[0,0]*CP[2,0]+CP[0,1]*CP[2,1]+CP[0,2]*CP[2,2])*celldm1**2/(a1*a3)))
-gamma = degrees(math.acos((CP[0,0]*CP[1,0]+CP[0,1]*CP[1,1]+CP[0,2]*CP[1,2])*celldm1**2/(a1*a2)))
+a1 = celldm1 * np.sqrt(CP[0,0]**2 + CP[0,1]**2 + CP[0,2]**2)
+a2 = celldm1 * np.sqrt(CP[1,0]**2 + CP[1,1]**2 + CP[1,2]**2)
+a3 = celldm1 * np.sqrt(CP[2,0]**2 + CP[2,1]**2 + CP[2,2]**2)
+#alpha = degrees(math.acos((CP[1,0]*CP[2,0]+CP[1,1]*CP[2,1]+CP[1,2]*CP[2,2])*celldm1**2/(a2*a3)))
+#beta  = degrees(math.acos((CP[0,0]*CP[2,0]+CP[0,1]*CP[2,1]+CP[0,2]*CP[2,2])*celldm1**2/(a1*a3)))
+#gamma = degrees(math.acos((CP[0,0]*CP[1,0]+CP[0,1]*CP[1,1]+CP[0,2]*CP[1,2])*celldm1**2/(a1*a2)))
+alpha = degrees(np.acos((CP[1,0]*CP[2,0]+CP[1,1]*CP[2,1]+CP[1,2]*CP[2,2])*celldm1**2/(a2*a3)))
+beta  = degrees(np.acos((CP[0,0]*CP[2,0]+CP[0,1]*CP[2,1]+CP[0,2]*CP[2,2])*celldm1**2/(a1*a3)))
+gamma = degrees(np.acos((CP[0,0]*CP[1,0]+CP[0,1]*CP[1,1]+CP[0,2]*CP[1,2])*celldm1**2/(a1*a2)))
 
 si = open('sgroup.in','w')
 print('P',file=si)
@@ -1064,13 +1065,13 @@ for i in Lag_strain_list:
             if (mthd == 'Energy'): r = 0.0001
             if (mthd == 'Stress'): r = 0.00001
 
-        Ls = zeros(6)
+        Ls = np.zeros(6)
         for i in range(6):
             Ls[i] = Ls_list[i]
         Lv = r*Ls
 
         #--- Lagrangian strain to physical strain (eta = eps + 0.5*eps*esp) -----------------------
-        eta_matrix      = zeros((3,3))
+        eta_matrix      = np.zeros((3,3))
 
         eta_matrix[0,0] = Lv[0]
         eta_matrix[0,1] = Lv[5]/2.
@@ -1086,12 +1087,12 @@ for i in Lag_strain_list:
 
         norm       = 1.0
         eps_matrix = eta_matrix
-        if (linalg.norm(eta_matrix) > 0.7):
+        if (np.linalg.norm(eta_matrix) > 0.7):
             sys.exit('\n.... Oops ERROR: Too large deformation!\n') 
 
         while( norm > 1.e-10 ):
             x          = eta_matrix - dot(eps_matrix, eps_matrix)/2.
-            norm       = linalg.norm(x - eps_matrix)      
+            norm       = np.linalg.norm(x - eps_matrix)      
             eps_matrix = x
 
         #--- Calculating the M_new matrix ---------------------------------------------------------
@@ -1126,5 +1127,8 @@ for i in Lag_strain_list:
         os.chdir('../')
     os.chdir('../')
 fdis.close()
-os.system('mkdir Structures_ESPRESSO; cp Dst??/Dst??_??/Dst??_??.in Structures_ESPRESSO/')
+#os.system('mkdir Structures_ESPRESSO; cp Dst??/Dst??_??/Dst??_??.in Structures_ESPRESSO/')
+os.makedirs('Structures_ESPRESSO', exist_ok=True)
+for f in glob.glob('Dst??/Dst??_??/Dst??_??.in'):
+    shutil.copy(f, 'Structures_ESPRESSO/')
 #--------------------------------------------------------------------------------------------------

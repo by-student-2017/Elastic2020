@@ -83,9 +83,12 @@ def sortarray(ary1, ary2, ary3):
         lst5.append(lst2[lst1.index(temp[i])])
         lst6.append(lst3[lst1.index(temp[i])])
 
-    ary4 = scipy.array(lst4)
-    ary5 = scipy.array(lst5)
-    ary6 = scipy.array(lst6)
+    #ary4 = scipy.array(lst4)
+    #ary5 = scipy.array(lst5)
+    #ary6 = scipy.array(lst6)
+    ary4 = np.array(lst4)
+    ary5 = np.array(lst5)
+    ary6 = np.array(lst6)
 
     return ary4, ary5, ary6
 #--------------------------------------------------------------------------------------------------
@@ -193,9 +196,12 @@ for eos in ['M', 'BM']:
             si.pop()
             vi.pop()
             ei.pop()
-        si = scipy.array(si)
-        vi = scipy.array(vi)
-        ei = scipy.array(ei)
+        #si = scipy.array(si)
+        #vi = scipy.array(vi)
+        #ei = scipy.array(ei)
+        si = np.array(si)
+        vi = np.array(vi)
+        ei = np.array(ei)
 
 BM_out.close()
 Bp_out.close()

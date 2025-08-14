@@ -18,16 +18,13 @@
 # 
 #__________________________________________________________________________________________________
 
-from sys   import stdin
-from numpy import *
-import numpy as np
-import subprocess
-import os.path
-import shutil
-import math
-import time
-import sys
 import os
+import sys
+import time
+import math
+import shutil
+import subprocess
+import numpy as np
 
 #%!%!%--- CONSTANTS ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
 _e    = 1.602176565e-19            # elementary charge
@@ -267,7 +264,8 @@ if (len(A2) != ECs):
     sys.exit('\n.... Oops ERROR: The number of data in the "ElaStic_2nd.in" is NOT equal to ' + \
     str(ECs)+'\n')
 
-C = zeros((6,6))
+#C = zeros((6,6))
+C = np.zeros((6,6))
 
 #%!%!%--- Cubic structures ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
 if (LC == 'CI' or \
@@ -433,7 +431,8 @@ BV = (C[0,0]+C[1,1]+C[2,2]+2*(C[0,1]+C[0,2]+C[1,2]))/9
 GV = ((C[0,0]+C[1,1]+C[2,2])-(C[0,1]+C[0,2]+C[1,2])+3*(C[3,3]+C[4,4]+C[5,5]))/15
 EV = (9*BV*GV)/(3*BV+GV)
 nuV= (1.5*BV-GV)/(3*BV+GV)
-S  = linalg.inv(C)
+#S  = linalg.inv(C)
+S  = np.linalg.inv(C)
 BR = 1/(S[0,0]+S[1,1]+S[2,2]+2*(S[0,1]+S[0,2]+S[1,2]))
 GR =15/(4*(S[0,0]+S[1,1]+S[2,2])-4*(S[0,1]+S[0,2]+S[1,2])+3*(S[3,3]+S[4,4]+S[5,5]))
 ER = (9*BR*GR)/(3*BR+GR)
@@ -496,7 +495,8 @@ print('\n'+ lineseparator +'\n',file=fo)
 
 print('    Eigenvalues of elastic constant (stiffness) matrix:   \n',file=fo)
 
-eigval=linalg.eig(C)
+#eigval=linalg.eig(C)
+eigval=np.linalg.eig(C)
 for i in range(6):
     print('%16.1f' % float(eigval[0][i]),file=fo)
 

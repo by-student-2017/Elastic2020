@@ -18,17 +18,14 @@
 # 
 #__________________________________________________________________________________________________
 
-from sys   import stdin
-from numpy import *
-import numpy as np
-import subprocess
-import warnings
-import os.path
-import shutil
-import copy
-import math
-import sys
 import os
+import sys
+import copy
+import warnings
+import numpy as np
+import math
+import subprocess
+import shutil
 import matplotlib.pyplot as plt
 
 #%!%!%--- SUBROUTINS AND FUNCTIONS ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
@@ -314,6 +311,11 @@ for i in Lag_strain_list:
     os.chdir('../')
 #--------------------------------------------------------------------------------------------------
 
+try:
+    from numpy.lib.polynomial import RankWarning  # NumPy >= 1.24
+except ImportError:
+    from numpy import RankWarning  # NumPy <= 1.23
+
 warnings.simplefilter('ignore', np.RankWarning)
 
 #%!%!%--- Directory management ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
@@ -477,7 +479,7 @@ for i in range(1, NoD+1):
                         else:            
                             etatmp.append(strain[q])
                             strtmp.append(stress[q])
-                    Yfit = polyval(polyfit(etatmp, strtmp, j), strain[k])
+                    Yfit = np.polyval(np.polyfit(etatmp, strtmp, j), strain[k])
                     S = S + (Yfit-Y)**2
 
                 CV = sqrt(S/len(strain))
