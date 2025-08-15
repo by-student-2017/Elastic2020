@@ -21,7 +21,8 @@ STEP 0.1:
      export ElaSticROOT=$HOME/Elastic2020
      export PATH=$HOME/Elastic2020:$PATH
      
-     Update your environment with the following command and use the "which" command to check if the link is established. If the link is established, the absolute path will be displayed.
+     Update your environment with the following command and use the "which" command to check if
+     the link is established. If the link is established, the absolute path will be displayed.
      source ~/.bashrc
      which ElaStic_Setup
 
