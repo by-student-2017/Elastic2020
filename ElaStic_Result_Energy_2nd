@@ -451,7 +451,7 @@ print(       '    The output of ElaStic code                                    
                                                                                          '\n'\
              '    Symmetry of the second-order elastic constant matrix in Voigt notation. \n'\
                 + head[LC] +                                                             '\n'\
-             '    Elastic constant (stiffness) matrix in GPa:                             \n',file=fo)
+             '    Elastic constant (stiffness) matrix in GPa:                             \n', file=fo)
 
 for i in range(0,6):
     print('',file=fo)
