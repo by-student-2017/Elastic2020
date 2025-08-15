@@ -364,6 +364,14 @@ except ImportError:
 
 warnings.simplefilter('ignore', np.RankWarning)
 
+if (os.path.exists('Stress-vs-Strain-Plot_old')):
+    shutil.rmtree( 'Stress-vs-Strain-Plot_old')   
+
+if (os.path.exists('Stress-vs-Strain-Plot')):
+    os.rename(     'Stress-vs-Strain-Plot','Stress-vs-Strain-Plot_old')
+
+os.mkdir('Stress-vs-Strain-Plot')
+
 #%!%!%--- Directory management ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
 if (os.path.exists('Stress-vs-Strain_old')):
     shutil.rmtree( 'Stress-vs-Strain_old')   
@@ -379,14 +387,6 @@ os.mkdir('Stress-vs-Strain')
 os.chdir('Stress-vs-Strain')
 
 os.system('cp -f ../Dst??/Dst??_Lagrangian-stress.dat .')
-
-if (os.path.exists('Stress-vs-Strain-Plot_old')):
-    shutil.rmtree( 'Stress-vs-Strain-Plot_old')   
-
-if (os.path.exists('Stress-vs-Strain-Plot')):
-    os.rename(     'Stress-vs-Strain-Plot','Stress-vs-Strain-Plot_old')
-
-os.mkdir('Stress-vs-Strain-Plot')
 
 #--------------------------------------------------------------------------------------------------
 

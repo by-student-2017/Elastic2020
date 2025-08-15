@@ -214,6 +214,14 @@ except ImportError:
 
 warnings.simplefilter('ignore', RankWarning)
 
+if (os.path.exists('Energy-vs-Strain-Plot_old')):
+    shutil.rmtree( 'Energy-vs-Strain-Plot_old')   
+
+if (os.path.exists('Energy-vs-Strain-Plot')):
+    os.rename(     'Energy-vs-Strain-Plot','Energy-vs-Strain-Plot_old')
+
+os.mkdir('Energy-vs-Strain-Plot')
+
 #%!%!%--- Directory management ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
 if (os.path.exists('Energy-vs-Strain_old')):
     shutil.rmtree( 'Energy-vs-Strain_old')   
@@ -225,14 +233,6 @@ os.mkdir('Energy-vs-Strain')
 os.chdir('Energy-vs-Strain')
 
 os.system('cp -f ../Dst??/Dst??_Energy.dat .')
-
-if (os.path.exists('Energy-vs-Strain-Plot_old')):
-    shutil.rmtree( 'Energy-vs-Strain-Plot_old')   
-
-if (os.path.exists('Energy-vs-Strain-Plot')):
-    os.rename(     'Energy-vs-Strain-Plot','Energy-vs-Strain-Plot_old')
-
-os.mkdir('Energy-vs-Strain-Plot')
 
 #--------------------------------------------------------------------------------------------------
 
