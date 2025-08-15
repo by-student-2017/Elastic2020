@@ -500,9 +500,9 @@ for i in range(6):
 
 print('\n'+ lineseparator +'\n',file=fo)
 
-print('    Pughs modulus ratio, k=G/B (Voigt): %15.8g' %(GV/BV),file=fo)
-print('    Pughs modulus ratio, k=G/B (Reuss): %15.8g' %(GR/BR),file=fo)
-print('    Pughs modulus ratio, k=G/B (Hill) : %15.8g' %(GH/BH),file=fo)
+print('    Pughs modulus ratio, k=G/B (Voigt): %8.3f' %(GV/BV),file=fo)
+print('    Pughs modulus ratio, k=G/B (Reuss): %8.3f' %(GR/BR),file=fo)
+print('    Pughs modulus ratio, k=G/B (Hill) : %8.3f' %(GH/BH),file=fo)
 
 print('    ',file=fo)
 print('    Note: ',file=fo)
