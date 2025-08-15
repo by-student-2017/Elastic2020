@@ -610,7 +610,7 @@ if (LC == 'N'):
 
 #%%%--- Write output file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
 fo = open('ElaStic_3rd.out','w')
-print(  '    The output of ElaStic code                                            \n'\
+print(       '    The output of ElaStic code                                            \n'\
              '    Today is '+ time.asctime() +                                         '\n'\
                                                                                        '\n'\
              '    Symmetry of the third-order elastic constants in Voigt notation       \n'\
@@ -618,29 +618,29 @@ print(  '    The output of ElaStic code                                         
 
 #-- Cubic I Structures ----------------------------------------------------------------------------
 if (LC == 'CI'):
-    print('    C111 =', '%11.2f'%(C111), '  GPa\n'\
+    print(      '    C111 =', '%11.2f'%(C111), '  GPa\n'\
                 '    C112 =', '%11.2f'%(C112), '  GPa\n'\
                 '    C123 =', '%11.2f'%(C123), '  GPa\n'\
                 '    C144 =', '%11.2f'%(C144), '  GPa\n'\
                 '    C155 =', '%11.2f'%(C155), '  GPa\n'\
-                '    C456 =', '%11.2f'%(C456), '  GPa\n',file=fo)
+                '    C456 =', '%11.2f'%(C456), '  GPa\n', file=fo)
 #--------------------------------------------------------------------------------------------------
 
 #-- Cubic II structures ---------------------------------------------------------------------------
 if (LC == 'CII'):
-    print( '    C111 =', '%11.2f'%(C111), '  GPa\n'\
+    print(      '    C111 =', '%11.2f'%(C111), '  GPa\n'\
                 '    C112 =', '%11.2f'%(C112), '  GPa\n'\
                 '    C113 =', '%11.2f'%(C113), '  GPa\n'\
                 '    C123 =', '%11.2f'%(C123), '  GPa\n'\
                 '    C144 =', '%11.2f'%(C144), '  GPa\n'\
                 '    C155 =', '%11.2f'%(C155), '  GPa\n'\
                 '    C166 =', '%11.2f'%(C166), '  GPa\n'\
-                '    C456 =', '%11.2f'%(C456), '  GPa\n',file=fo)
+                '    C456 =', '%11.2f'%(C456), '  GPa\n', file=fo)
 #--------------------------------------------------------------------------------------------------
 
 #-- Hexagonal I structures ------------------------------------------------------------------------
 if (LC == 'HI'):
-    print( '    C111 =', '%11.2f'%(C111), '  GPa\n'\
+    print(      '    C111 =', '%11.2f'%(C111), '  GPa\n'\
                 '    C112 =', '%11.2f'%(C112), '  GPa\n'\
                 '    C113 =', '%11.2f'%(C113), '  GPa\n'\
                 '    C123 =', '%11.2f'%(C123), '  GPa\n'\
@@ -649,12 +649,12 @@ if (LC == 'HI'):
                 '    C155 =', '%11.2f'%(C155), '  GPa\n'\
                 '    C222 =', '%11.2f'%(C222), '  GPa\n'\
                 '    C333 =', '%11.2f'%(C333), '  GPa\n'\
-                '    C344 =', '%11.2f'%(C344), '  GPa\n',file=fo)
+                '    C344 =', '%11.2f'%(C344), '  GPa\n', file=fo)
 #--------------------------------------------------------------------------------------------------
 
 #-- Hexagonal II structures -----------------------------------------------------------------------
 if (LC == 'HII'):
-    print('    C111 =', '%11.2f'%(C111), '  GPa\n'\
+    print(      '    C111 =', '%11.2f'%(C111), '  GPa\n'\
                 '    C112 =', '%11.2f'%(C112), '  GPa\n'\
                 '    C113 =', '%11.2f'%(C113), '  GPa\n'\
                 '    C116 =', '%11.2f'%(C116), '  GPa\n'\
@@ -665,12 +665,12 @@ if (LC == 'HII'):
                 '    C155 =', '%11.2f'%(C155), '  GPa\n'\
                 '    C222 =', '%11.2f'%(C222), '  GPa\n'\
                 '    C333 =', '%11.2f'%(C333), '  GPa\n'\
-                '    C344 =', '%11.2f'%(C344), '  GPa\n',file=fo)
+                '    C344 =', '%11.2f'%(C344), '  GPa\n', file=fo)
 #--------------------------------------------------------------------------------------------------
 
 #-- Rhombohedral I structures ---------------------------------------------------------------------
 if (LC == 'RI'):
-    print('    C111 =', '%11.2f'%(C111), '  GPa\n'\
+    print(      '    C111 =', '%11.2f'%(C111), '  GPa\n'\
                 '    C112 =', '%11.2f'%(C112), '  GPa\n'\
                 '    C113 =', '%11.2f'%(C113), '  GPa\n'\
                 '    C114 =', '%11.2f'%(C114), '  GPa\n'\
@@ -683,7 +683,7 @@ if (LC == 'RI'):
                 '    C222 =', '%11.2f'%(C222), '  GPa\n'\
                 '    C333 =', '%11.2f'%(C333), '  GPa\n'\
                 '    C344 =', '%11.2f'%(C344), '  GPa\n'\
-                '    C444 =', '%11.2f'%(C444), '  GPa\n',file=fo)
+                '    C444 =', '%11.2f'%(C444), '  GPa\n', file=fo)
 #--------------------------------------------------------------------------------------------------
 
 # The section from RII to M is undeveloped, so I've filled it in for now. Please check it out.
@@ -785,7 +785,7 @@ print('    These components are determined by the crystal symmetry of the struct
 print('    The numerical values of Cijk are calculated based on energy-strain fitting.', file=fo)
 
 print('\n    ... Have a G00D Day, Week, Month, Year, and Century (if you are lucky) ...    '\
-           '\n               Bye-Bye! Tschuess! Ciao! Poka! Zia Jian! KhodaHafez!             \n',file=fo)
+      '\n               Bye-Bye! Tschuess! Ciao! Poka! Zia Jian! KhodaHafez!             \n',file=fo)
 fo.close()
 #--------------------------------------------------------------------------------------------------
 os.chdir('../')
