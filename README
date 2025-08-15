@@ -162,7 +162,7 @@ ElaStic_1.1.tar.gz (https://exciting-code.org/elastic/)
 
   Note
 =========
-In the 3rd version (i.e., third-order elastic constants), the structures RII, TI, TII, O, M, and N are not supported. This is also the case with the original version from 2013.
+In the 3rd version (energy mode) (i.e., third-order elastic constants), the structures RII, TI, TII, O, M, and N are not supported. This is also the case with the original version from 2013. Note that stress mode does not support all structures, only energy mode, and even then the structure is limited.
 Related Link: https://github.com/by-student-2017/LBT-TETRA/tree/main/Elastic_consntants_calculation/QE_Elastic2020
 
   Test
