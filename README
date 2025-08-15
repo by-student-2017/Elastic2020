@@ -17,8 +17,11 @@ Quantum Espresso for energy and stress calculations.
 STEP 0.1:
      The "ElaSticROOT" shell variable must be set by the user. For instance, add the following 
      line with the correct "Elastic2020" path, in the ".bashrc" file:
+     
      export ElaSticROOT=$HOME/Elastic2020
      export PATH=$HOME/Elastic2020:$PATH
+     source ~/.bashrc
+     which ElaStic_Setup
 
 STEP 0.2:
      Download and install "SGROUP" program:
