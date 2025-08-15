@@ -507,6 +507,7 @@ print('    Vickers hardnesses (Hill)  (Tian  model, 2012): %15.8g [GPa]' %(0.92*
 print('    Vickers hardnesses (Hill)  (Chen  model, 2011): %15.8g [GPa]' %(2.00*((GH/BH)**2.0*GH)**0.585-3.0),file=fo)
 print('    Vickers hardnesses (Hill)  (Teter model, 1998): %15.8g [GPa]' %(0.151*GH),file=fo)
 
+print('    ',file=fo)
 print('    Note (VASP case)',file=fo)
 print('    Hill = Voigt-Reuss-Hill (VRH) Approximation (averages)',file=fo)
 print('    For HvChen (= Vickers hardnesses (Chen  model, 2011))',file=fo)
@@ -523,6 +524,88 @@ print('    Eigenvalues of elastic constant (stiffness) matrix:   \n',file=fo)
 eigval=np.linalg.eig(C)
 for i in range(6):
     print('%16.1f' % float(eigval[0][i]),file=fo)
+
+print('    ',file=fo)
+print('\n'+ lineseparator +'\n',file=fo)
+
+print('    Pughs modulus ratio, k=G/B (Voigt): %15.8g' %(GV/BV),file=fo)
+print('    Pughs modulus ratio, k=G/B (Reuss): %15.8g' %(GR/BR),file=fo)
+print('    Pughs modulus ratio, k=G/B (Hill) : %15.8g' %(GH/BH),file=fo)
+
+print('    ',file=fo)
+print('    Note: ',file=fo)
+print('    The Pughs modulus ratio k equals shear modulus divided by bulk modulus.',file=fo)
+print('    It is used to estimate ductility and brittleness of materials.',file=fo)
+print('    A value below 0.5 suggests ductile behavior, while above 0.5 indicates brittleness.',file=fo)
+print('    This ratio is useful in mechanical design and failure prediction.',file=fo)
+print('    It provides insight into bonding nature and structural integrity.',file=fo)
+
+print('\n'+ lineseparator +'\n',file=fo)
+
+print('    Vickers hardnesses (Voigt) (Tian  model, 2012): %8.3f [GPa]' %(0.92*((GV/BV)**1.137)*(GV**0.708)),file=fo)
+print('    Vickers hardnesses (Voigt) (Chen  model, 2011): %8.3f [GPa]' %(2.00*((GV/BV)**2.0*GV)**0.585-3.0),file=fo)
+print('    Vickers hardnesses (Voigt) (Teter model, 1998): %8.3f [GPa]' %(0.151*GV),file=fo)
+
+print('    Vickers hardnesses (Reuss) (Tian  model, 2012): %8.3f [GPa]' %(0.92*((GR/BR)**1.137)*(GR**0.708)),file=fo)
+print('    Vickers hardnesses (Reuss) (Chen  model, 2011): %8.3f [GPa]' %(2.00*((GR/BR)**2.0*GR)**0.585-3.0),file=fo)
+print('    Vickers hardnesses (Reuss) (Teter model, 1998): %8.3f [GPa]' %(0.151*GR),file=fo)
+
+print('    Vickers hardnesses (Hill)  (Tian  model, 2012): %8.3f [GPa]' %(0.92*((GH/BH)**1.137)*(GH**0.708)),file=fo)
+print('    Vickers hardnesses (Hill)  (Chen  model, 2011): %8.3f [GPa]' %(2.00*((GH/BH)**2.0*GH)**0.585-3.0),file=fo)
+print('    Vickers hardnesses (Hill)  (Teter model, 1998): %8.3f [GPa]' %(0.151*GH),file=fo)
+
+print('    ',file=fo)
+print('    Note (VASP case)',file=fo)
+print('    Hill = Voigt-Reuss-Hill (VRH) Approximation (averages)',file=fo)
+print('    For HvChen (= Vickers hardnesses (Chen  model, 2011))',file=fo)
+print('    covalent and ionic crystals: Root Mean Square Error (RMSE) = 4.4',file=fo)
+print('    covalent and ionic crystals: Mean Absolute Error (MAE)     = 2.1',file=fo)
+print('    bulk metallic glasses:       Root Mean Square Error (RMSE) = 0.9',file=fo)
+print('    bulk metallic glasses:       Mean Absolute Error (MAE)     = 0.8',file=fo)
+
+print('    Note (Hardness and Applications)',file=fo)
+print('    Vickers hardness Hv estimates resistance to plastic deformation.',file=fo)
+print('    Higher Hv values indicate stronger resistance to indentation and wear.',file=fo)
+print('    Hardness is correlated with yield strength and fracture toughness.',file=fo)
+print('    Materials with high Hv are used in cutting tools, coatings, and structural components.',file=fo)
+print('    Hv also helps screen superhard materials and predict mechanical failure.',file=fo)
+print('    Tian, Chen, and Teter models provide empirical estimates from elastic moduli.',file=fo)
+print('    These models are useful when experimental hardness data is unavailable.',file=fo)
+
+print('\n'+ lineseparator +'\n',file=fo)
+
+# Au = 5.0 * GV/GR + BV/BR - 6.0
+print('    Universal Anisotropy Index: %8.3f' %(5.0*(GV/GR)+(BV/BR)-6.0),file=fo)
+print('    ',file=fo)
+
+# C11 = C[0,0], A = 2*C44/(C11-C12)
+print('    Zener Anisotropy Ratio: %8.3f' %(2.0*C[3,3]/(C[0,0]-C[0,1])),file=fo)
+
+print('    Note: ',file=fo)
+print('    The Universal Anisotropy Index Au quantifies elastic anisotropy in polycrystals.',file=fo)
+print('    Au equals zero for isotropic materials and increases with anisotropy.',file=fo)
+print('    It is useful for evaluating mechanical stability and texture effects.',file=fo)
+print('    The Zener Ratio A measures anisotropy in cubic crystals.',file=fo)
+print('    A equals one for isotropic cubic systems and deviates with directional stiffness.',file=fo)
+print('    Both Au and A help assess mechanical behavior and guide material design.',file=fo)
+
+print('\n'+ lineseparator +'\n',file=fo)
+
+# gamma = (3.0/2.0)*(1.0 - (2.0/3.0)*(G/(B + (4.0/3.0)*G))
+print('    Gruneisen constant (Voigt) (Slater approximation): %8.3f' %( (3.0/2.0)*(1.0-(2.0/3.0)*(GV/(BV+(4.0/3.0)*GV))) ),file=fo)
+print('    Gruneisen constant (Reuss) (Slater approximation): %8.3f' %( (3.0/2.0)*(1.0-(2.0/3.0)*(GR/(BR+(4.0/3.0)*GR))) ),file=fo)
+print('    Gruneisen constant (Hill)  (Slater approximation): %8.3f' %( (3.0/2.0)*(1.0-(2.0/3.0)*(GH/(BH+(4.0/3.0)*GH))) ),file=fo)
+
+print('    ',file=fo)
+print('    Note: ',file=fo)
+print('    The Gruneisen parameter gamma describes lattice anharmonicity.',file=fo)
+print('    In the Slater approximation, gamma is estimated from bulk modulus B and shear modulus G.',file=fo)
+print('    This method does not require phonon data and enables fast thermal property estimation.',file=fo)
+print('    Gamma affects thermal expansion, heat capacity, and thermal conductivity.',file=fo)
+print('    It also contributes to equation of state and Debye temperature estimation.',file=fo)
+print('    Even as an approximation, gamma links mechanical stiffness to thermal behavior.',file=fo)
+
+print('\n'+ lineseparator +'\n',file=fo)
 
 print('\n    ... Have a G00D Day, Week, Month, Year, and Century (if you are lucky) ...    '\
            '\n               Bye-Bye! Tschuess! Ciao! Poka! Zia Jian! KhodaHafez!             \n',file=fo)
