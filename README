@@ -171,4 +171,4 @@ In the 3rd version (i.e., third-order elastic constants), the structures RII, TI
 - Numpy: 1.21.5
 - Matplotlib: 3.5.1
 - Scipy: 1.8.0
-- QE: 6.8 or Later
+- QE: 6.3 or Later
