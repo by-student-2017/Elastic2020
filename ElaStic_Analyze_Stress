@@ -583,8 +583,12 @@ for i in range(1, NoD+1):
     eta_max_lists = {l: [] for l in range(1, 7)}
     
     for l in range(1, 7):
+        # Fit_order selection: 2nd -> 4th, 3rd -> 5th (based on plateau)
+        # The reason for setting the degree of fit to this value is that 
+        # if it is too low it will not be stable, while if it is too high it will result in overfitting.
         if (ordr == 2): fit_nth = '4th'
         if (ordr == 3): fit_nth = '5th'
+        #
         if fit_nth in cve_all[Dstn][LSi_dic[l]] and cve_all[Dstn][LSi_dic[l]][fit_nth]:
             eta_max_lists[l].append(cve_all[Dstn][LSi_dic[l]][fit_nth][0])
     Fit_order = ''.join(filter(str.isdigit, fit_nth))  # old version: Fit_order = fit_nth[0]
@@ -594,7 +598,7 @@ for i in range(1, NoD+1):
         if eta_max_lists[l]:
             eta_max_values.append(max(eta_max_lists[l]))
         else:
-            eta_max_values.append(0.0050)
+            eta_max_values.append(0.0050)   # maximum Lagrangian strain in bash script
     print(
         f"{Dstn}  " +
         "  ".join(f"{eta:.6f}" for eta in eta_max_values) +

@@ -387,8 +387,12 @@ for i in range(1, ECs+1):
     #print(Dstn+'    eta_max    Fit_order',file=fri)
     eta_max_list = []
     
+    # Fit_order selection: 2nd -> 4th, 3rd -> 5th (based on plateau)
+    # The reason for setting the degree of fit to this value is that 
+    # if it is too low it will not be stable, while if it is too high it will result in overfitting.
     if (ordr == 2): fit_nth = '4th'
     if (ordr == 3): fit_nth = '5th'
+    
     if fit_nth in cve and cve[fit_nth][0]:
         eta_max_list.append(max(cve[fit_nth][0]))
     Fit_order = ''.join(filter(str.isdigit, fit_nth))  # old version: Fit_order = fit_nth[0]
@@ -396,7 +400,7 @@ for i in range(1, ECs+1):
     if eta_max_list:
         eta_max = max(eta_max_list)
     else:
-        eta_max = 0.030
+        eta_max = 0.030  # maximum Lagrangian strain in bash script
     
     print(f"{Dstn}  {max(eta_max_list):.6f}  {Fit_order}", file=fri)
 fri.close()
