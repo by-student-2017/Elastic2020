@@ -563,6 +563,7 @@ print('    covalent and ionic crystals: Mean Absolute Error (MAE)     = 2.1',fil
 print('    bulk metallic glasses:       Root Mean Square Error (RMSE) = 0.9',file=fo)
 print('    bulk metallic glasses:       Mean Absolute Error (MAE)     = 0.8',file=fo)
 
+print('    ',file=fo)
 print('    Note (Hardness and Applications)',file=fo)
 print('    Vickers hardness Hv estimates resistance to plastic deformation.',file=fo)
 print('    Higher Hv values indicate stronger resistance to indentation and wear.',file=fo)
