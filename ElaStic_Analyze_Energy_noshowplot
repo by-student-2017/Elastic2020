@@ -226,6 +226,12 @@ os.chdir('Energy-vs-Strain')
 
 os.system('cp -f ../Dst??/Dst??_Energy.dat .')
 
+if (os.path.exists('Energy-vs-Strain-Plot_old')):
+    shutil.rmtree( 'Energy-vs-Strain-Plot_old')   
+
+if (os.path.exists('Energy-vs-Strain-Plot')):
+    os.rename(     'Energy-vs-Strain-Plot','Energy-vs-Strain-Plot_old')
+
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
 #%!%!% ------------ Calculating the second derivative and Cross-Validation Error ----------- %!%!%#
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
@@ -235,9 +241,6 @@ if (cod == 'exciting'):
     CONV = ToGPa * factorial(ordr)*2.
 if (cod == 'ESPRESSO'):
     CONV = ToGPa * factorial(ordr)*1.
-
-# Create 'plot' directory if it doesn't exist
-os.makedirs('Energy-vs-Strain-Plot', exist_ok=True)
 
 for i in range(1, ECs+1):
     if (i<10):

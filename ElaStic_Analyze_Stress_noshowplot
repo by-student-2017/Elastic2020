@@ -380,6 +380,12 @@ os.chdir('Stress-vs-Strain')
 
 os.system('cp -f ../Dst??/Dst??_Lagrangian-stress.dat .')
 
+if (os.path.exists('Stress-vs-Strain-Plot_old')):
+    shutil.rmtree( 'Stress-vs-Strain-Plot_old')   
+
+if (os.path.exists('Stress-vs-Strain-Plot')):
+    os.rename(     'Stress-vs-Strain-Plot','Stress-vs-Strain-Plot_old')
+
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
@@ -387,9 +393,6 @@ os.system('cp -f ../Dst??/Dst??_Lagrangian-stress.dat .')
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
 if (cod == 'ESPRESSO'):
     CONV = (1-ordr)/10.
-
-# Create 'plot' directory if it doesn't exist
-os.makedirs('Stress-vs-Strain-Plot', exist_ok=True)
 
 cve_all = {}
 
