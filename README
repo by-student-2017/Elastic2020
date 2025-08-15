@@ -23,6 +23,7 @@ STEP 0.1:
      
      Update your environment with the following command and use the "which" command to check if
      the link is established. If the link is established, the absolute path will be displayed.
+     
      source ~/.bashrc
      which ElaStic_Setup
 
