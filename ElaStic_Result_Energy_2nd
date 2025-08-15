@@ -446,7 +446,7 @@ AVR= 100.*(GV-GR)/(GV+GR)
 
 #%!%!%--- Writing the output file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
 fo = open('ElaStic_2nd.out', 'w')
-print(  '    The output of ElaStic code                                              \n'\
+print(       '    The output of ElaStic code                                              \n'\
              '    Today is '+ time.asctime() +                                           '\n'\
                                                                                          '\n'\
              '    Symmetry of the second-order elastic constant matrix in Voigt notation. \n'\
