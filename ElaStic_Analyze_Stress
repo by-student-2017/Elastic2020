@@ -199,27 +199,27 @@ if (mthd == 'Stress'):
 
     if ordr == 3:
         if LC == 'CI':
-            Lag_strain_list = ['36', '42', '43']  # NoD = 3, Dst03, Matrix 18
+            Lag_strain_list = ['36', '42', '43']  # NoD = 3, Dst03, Matrix 18 rows x 6 columns (C[0]-C[5])
         elif LC == 'CII':
-            Lag_strain_list = ['36', '42']  # NoD = 2, Dst02, Matrix 12
+            Lag_strain_list = ['36', '42']  # NoD = 2, Dst02, Matrix 12 rows x 8 columns (C[0]-C[7])
         elif LC == 'HI':
-            Lag_strain_list = ['36', '38', '42']  # NoD = 3, Dst03, Matrix 18
+            Lag_strain_list = ['36', '38', '42']  # NoD = 3, Dst03, Matrix 18 rows x 10 columns (C[0]-C[9])
         elif LC == 'HII':
-            Lag_strain_list = ['36', '38']  # NoD = 2, Dst02, Matrix 12
+            Lag_strain_list = ['36', '38']  # NoD = 2, Dst02, Matrix 12 x 12 columns (C[0]-C[11])
         elif LC == 'RI':
-            Lag_strain_list = ['36', '38', '42']  # NoD = 3, Dst03, Matrix 18
+            Lag_strain_list = ['36', '38', '42']  # NoD = 3, Dst03, Matrix 18 rows x 14 columns (C[0]-C[13])
         elif LC == 'RII':
-            Lag_strain_list = ['36', '38']  # NoD = 2, Dst02, Matrix 12
+            Lag_strain_list = ['36', '38']  # NoD = 2, Dst02, Matrix 12 rows x 12 columns (C[0]-C[11])
         elif LC == 'TI':
-            Lag_strain_list = ['36', '38', '42']  # NoD = 3, Dst03, Matrix 18
+            Lag_strain_list = ['36', '38', '42']  # NoD = 3, Dst03, Matrix 18 rows x 8 columns (C[0]-C[7])
         elif LC == 'TII':
-            Lag_strain_list = ['36', '38']  # NoD = 2, Dst02, Matrix 12
+            Lag_strain_list = ['36', '38']  # NoD = 2, Dst02, Matrix 12 rows x 10 columns (C[0]-C[9])
         elif LC == 'O':
-            Lag_strain_list = ['36', '42', '43']  # NoD = 3, Dst03, Matrix 18
+            Lag_strain_list = ['36', '42', '43']  # NoD = 3, Dst03, Matrix 18 rows x 10 columns (C[0]-C[9])
         elif LC == 'M':
-            Lag_strain_list = ['36', '38', '42']  # NoD = 3, Dst03, Matrix 18
+            Lag_strain_list = ['36', '38', '42', '43']  # NoD = 4, Dst04, Matrix 24 rows x 12 columns (C[0]-C[11])
         elif LC == 'N':
-            Lag_strain_list = ['36', '38']  # NoD = 2, Dst02, Matrix 12
+            Lag_strain_list = ['36', '37', '38', '42', '43']  # NoD = 5, Dst05, Matrix 30 rows x 15 columns (C[0]-C[4])
 
 cont1= 0
 for i in Lag_strain_list:
