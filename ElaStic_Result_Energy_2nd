@@ -491,33 +491,6 @@ print('\n'+ lineseparator +'\n',file=fo)
 
 print('    Elastic Anisotropy in polycrystalline, AVR = {0} %'.format('%8.3f'%(AVR)),file=fo)
 
-print('\n'+ lineseparator +'\n',file=fo)
-
-print('    Pughs modulus ratio, k=G/B: %15.8g' %(GV/BV),file=fo)
-
-print('    Vickers hardnesses (Voigt) (Tian  model, 2012): %15.8g [GPa]' %(0.92*((GV/BV)**1.137)*(GV**0.708)),file=fo)
-print('    Vickers hardnesses (Voigt) (Chen  model, 2011): %15.8g [GPa]' %(2.00*((GV/BV)**2.0*GV)**0.585-3.0),file=fo)
-print('    Vickers hardnesses (Voigt) (Teter model, 1998): %15.8g [GPa]' %(0.151*GV),file=fo)
-
-print('    Vickers hardnesses (Reuss) (Tian  model, 2012): %15.8g [GPa]' %(0.92*((GR/BR)**1.137)*(GR**0.708)),file=fo)
-print('    Vickers hardnesses (Reuss) (Chen  model, 2011): %15.8g [GPa]' %(2.00*((GR/BR)**2.0*GR)**0.585-3.0),file=fo)
-print('    Vickers hardnesses (Reuss) (Teter model, 1998): %15.8g [GPa]' %(0.151*GR),file=fo)
-
-print('    Vickers hardnesses (Hill)  (Tian  model, 2012): %15.8g [GPa]' %(0.92*((GH/BH)**1.137)*(GH**0.708)),file=fo)
-print('    Vickers hardnesses (Hill)  (Chen  model, 2011): %15.8g [GPa]' %(2.00*((GH/BH)**2.0*GH)**0.585-3.0),file=fo)
-print('    Vickers hardnesses (Hill)  (Teter model, 1998): %15.8g [GPa]' %(0.151*GH),file=fo)
-
-print('    ',file=fo)
-print('    Note (VASP case)',file=fo)
-print('    Hill = Voigt-Reuss-Hill (VRH) Approximation (averages)',file=fo)
-print('    For HvChen (= Vickers hardnesses (Chen  model, 2011))',file=fo)
-print('    covalent and ionic crystals: Root Mean Square Error (RMSE) = 4.4',file=fo)
-print('    covalent and ionic crystals: Mean Absolute Error (MAE)     = 2.1',file=fo)
-print('    bulk metallic glasses:       Root Mean Square Error (RMSE) = 0.9',file=fo)
-print('    bulk metallic glasses:       Mean Absolute Error (MAE)     = 0.8',file=fo)
-
-print('\n'+ lineseparator +'\n',file=fo)
-
 print('    Eigenvalues of elastic constant (stiffness) matrix:   \n',file=fo)
 
 #eigval=linalg.eig(C)
@@ -525,7 +498,6 @@ eigval=np.linalg.eig(C)
 for i in range(6):
     print('%16.1f' % float(eigval[0][i]),file=fo)
 
-print('    ',file=fo)
 print('\n'+ lineseparator +'\n',file=fo)
 
 print('    Pughs modulus ratio, k=G/B (Voigt): %15.8g' %(GV/BV),file=fo)
@@ -564,32 +536,41 @@ print('    bulk metallic glasses:       Root Mean Square Error (RMSE) = 0.9',fil
 print('    bulk metallic glasses:       Mean Absolute Error (MAE)     = 0.8',file=fo)
 
 print('    ',file=fo)
-print('    Note (Hardness and Applications)',file=fo)
+print('    Note (Vickers Hardness and Structural Implications)',file=fo)
 print('    Vickers hardness Hv estimates resistance to plastic deformation.',file=fo)
-print('    Higher Hv values indicate stronger resistance to indentation and wear.',file=fo)
-print('    Hardness is correlated with yield strength and fracture toughness.',file=fo)
-print('    Materials with high Hv are used in cutting tools, coatings, and structural components.',file=fo)
-print('    Hv also helps screen superhard materials and predict mechanical failure.',file=fo)
-print('    Tian, Chen, and Teter models provide empirical estimates from elastic moduli.',file=fo)
-print('    These models are useful when experimental hardness data is unavailable.',file=fo)
+print('    It correlates with yield strength and fracture toughness.',file=fo)
+print('    Useful for predicting wear resistance and indentation behavior.',file=fo)
+print('    High Hv indicates strong atomic bonding and low ductility.',file=fo)
+print('    Hv helps assess crack initiation and propagation under stress.',file=fo)
+print('    Important for evaluating surface stability and coating durability.',file=fo)
+print('    Guides material selection for cutting tools and structural components.',file=fo)
+print('    Also used to estimate void formation resistance and microstructural integrity.',file=fo)
 
 print('\n'+ lineseparator +'\n',file=fo)
 
 # Au = 5.0 * GV/GR + BV/BR - 6.0
 print('    Universal Anisotropy Index: %8.3f' %(5.0*(GV/GR)+(BV/BR)-6.0),file=fo)
+
 print('    ',file=fo)
+print('    Note: Zener Ratio and Structural Behavior',file=fo)
+print('    Zener ratio quantifies elastic anisotropy in cubic crystals.',file=fo)
+print('    It helps predict crack propagation direction in anisotropic stress fields.',file=fo)
+print('    Guides selection of slip systems for dislocation motion.',file=fo)
+print('    Important for epitaxial growth where lattice matching affects stability.',file=fo)
+print('    Also used to evaluate directional stress concentration at interfaces.',file=fo)
+
+print('\n'+ lineseparator +'\n',file=fo)
 
 # C11 = C[0,0], A = 2*C44/(C11-C12)
 print('    Zener Anisotropy Ratio: %8.3f' %(2.0*C[3,3]/(C[0,0]-C[0,1])),file=fo)
 
 print('    ',file=fo)
-print('    Note: ',file=fo)
-print('    The Universal Anisotropy Index Au quantifies elastic anisotropy in polycrystals.',file=fo)
-print('    Au equals zero for isotropic materials and increases with anisotropy.',file=fo)
-print('    It is useful for evaluating mechanical stability and texture effects.',file=fo)
-print('    The Zener Ratio A measures anisotropy in cubic crystals.',file=fo)
-print('    A equals one for isotropic cubic systems and deviates with directional stiffness.',file=fo)
-print('    Both Au and A help assess mechanical behavior and guide material design.',file=fo)
+print('    Note: Universal Elastic Anisotropy Index and Microstructural Effects',file=fo)
+print('    Au measures overall elastic anisotropy in polycrystalline materials.',file=fo)
+print('    Influences GP zone formation by controlling stress field directionality.',file=fo)
+print('    Helps assess delamination risk and interfacial energy variation.',file=fo)
+print('    Guides stacking orientation in composite design for stress optimization.',file=fo)
+print('    Useful for predicting void formation in anisotropic stress environments.',file=fo)
 
 print('\n'+ lineseparator +'\n',file=fo)
 
@@ -599,13 +580,37 @@ print('    Gruneisen constant (Reuss) (Slater approximation): %8.3f' %( (3.0/2.0
 print('    Gruneisen constant (Hill)  (Slater approximation): %8.3f' %( (3.0/2.0)*(1.0-(2.0/3.0)*(GH/(BH+(4.0/3.0)*GH))) ),file=fo)
 
 print('    ',file=fo)
-print('    Note: ',file=fo)
-print('    The Gruneisen parameter gamma describes lattice anharmonicity.',file=fo)
-print('    In the Slater approximation, gamma is estimated from bulk modulus B and shear modulus G.',file=fo)
-print('    This method does not require phonon data and enables fast thermal property estimation.',file=fo)
-print('    Gamma affects thermal expansion, heat capacity, and thermal conductivity.',file=fo)
-print('    It also contributes to equation of state and Debye temperature estimation.',file=fo)
-print('    Even as an approximation, gamma links mechanical stiffness to thermal behavior.',file=fo)
+print('    Note:', file=fo)
+print('    The Gruneisen parameter gamma describes lattice anharmonicity.', file=fo)
+print('    In the Slater approximation, gamma is estimated from bulk modulus B and shear modulus G.', file=fo)
+print('    This method does not require phonon data and enables fast thermal property estimation.', file=fo)
+print('    Gamma affects the following properties:', file=fo)
+print('      - Thermal expansion coefficient: alpha = gamma * Cv / (B * V)', file=fo)
+print('      - Heat capacity temperature dependence (Debye model correction)', file=fo)
+print('      - Lattice thermal conductivity (via phonon-phonon scattering, e.g., Slack model)', file=fo)
+print('      - Phonon lifetime and scattering rate (related to anharmonicity)', file=fo)
+print('      - Pressure dependence of vibrational properties and equation of state', file=fo)
+print('      - Melting point under pressure (Lindemann theory)', file=fo)
+print('      - Temperature dependence of elastic constants', file=fo)
+print('    Even as an approximation, gamma links mechanical stiffness to thermal behavior.', file=fo)
+
+print('\n'+ lineseparator +'\n',file=fo)
+
+# vl = sqrt((B+4/3*G)/density) [m/s], vt = sqrt(G/density) [m/s]
+# vl/vt = sqrt(B/G + 4/3)
+print('    vl = sound velocity (longitudinal wave) [m/s], vt = sound velocity (transverse waves) [m/s]',file=fo)
+print('    vl/vt ratio: %8.3f' %( np.sqrt(BH/GH + 4.0/3.0) ),file=fo)
+
+print('    ',file=fo)
+print('    Note (Hill Average and Physical Property Relations)',file=fo)
+print('    Hill average is the mean of Voigt and Reuss bounds for bulk and shear moduli.',file=fo)
+print('    It provides stable input for property models derived from elastic constants.',file=fo)
+print('    Used in Gruneisen parameter via Slater approximation: gamma ~ f(B, G).',file=fo)
+print('    Used in hardness models: Hv is empirically modeled as a function of G and B in Tian, Chen, and Teter formulas.',file=fo)
+print('    Used in ductility prediction: Pugh ratio k = G/B.',file=fo)
+print('    Used in sound velocity estimation: vl = sqrt((B + 4/3 G)/rho), vt = sqrt(G/rho).',file=fo)
+print('    vl/vt ratio relates to Poisson ratio and elastic anisotropy.',file=fo)
+print('    These relations support thermal conductivity, EOS, and mechanical stability analysis.',file=fo)
 
 print('\n'+ lineseparator +'\n',file=fo)
 
