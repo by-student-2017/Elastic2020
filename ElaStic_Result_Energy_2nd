@@ -496,8 +496,9 @@ print('    Eigenvalues of elastic constant (stiffness) matrix:   \n',file=fo)
 #eigval=linalg.eig(C)
 eigval=np.linalg.eig(C)
 for i in range(6):
-    print('%16.1f' % float(eigval[0][i]),file=fo)
+    print('%16.1f' % float(eigval[0][i]), file=fo)
 
+print('    ',file=fo)
 print('\n'+ lineseparator +'\n',file=fo)
 
 print('    Pughs modulus ratio, k=G/B (Voigt): %8.3f' %(GV/BV),file=fo)
