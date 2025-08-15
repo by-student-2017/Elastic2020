@@ -748,6 +748,30 @@ print('    Elastic Anisotropy in polycrystalline, AVR = {0} %'.format('%8.3f'%(A
 
 print('\n'+ lineseparator +'\n',file=fo)
 
+print('    Pughs modulus ratio, k=G/B: %15.8g' %(GV/BV),file=fo)
+
+print('    Vickers hardnesses (Voigt) (Tian  model, 2012): %15.8g [GPa]' %(0.92*((GV/BV)**1.137)*(GV**0.708)),file=fo)
+print('    Vickers hardnesses (Voigt) (Chen  model, 2011): %15.8g [GPa]' %(2.00*((GV/BV)**2.0*GV)**0.585-3.0),file=fo)
+print('    Vickers hardnesses (Voigt) (Teter model, 1998): %15.8g [GPa]' %(0.151*GV),file=fo)
+
+print('    Vickers hardnesses (Reuss) (Tian  model, 2012): %15.8g [GPa]' %(0.92*((GR/BR)**1.137)*(GR**0.708)),file=fo)
+print('    Vickers hardnesses (Reuss) (Chen  model, 2011): %15.8g [GPa]' %(2.00*((GR/BR)**2.0*GR)**0.585-3.0),file=fo)
+print('    Vickers hardnesses (Reuss) (Teter model, 1998): %15.8g [GPa]' %(0.151*GR),file=fo)
+
+print('    Vickers hardnesses (Hill)  (Tian  model, 2012): %15.8g [GPa]' %(0.92*((GH/BH)**1.137)*(GH**0.708)),file=fo)
+print('    Vickers hardnesses (Hill)  (Chen  model, 2011): %15.8g [GPa]' %(2.00*((GH/BH)**2.0*GH)**0.585-3.0),file=fo)
+print('    Vickers hardnesses (Hill)  (Teter model, 1998): %15.8g [GPa]' %(0.151*GH),file=fo)
+
+print('    Note (VASP case)',file=fo)
+print('    Hill = Voigt-Reuss-Hill (VRH) Approximation (averages)',file=fo)
+print('    For HvChen (= Vickers hardnesses (Chen  model, 2011))',file=fo)
+print('    covalent and ionic crystals: Root Mean Square Error (RMSE) = 4.4',file=fo)
+print('    covalent and ionic crystals: Mean Absolute Error (MAE)     = 2.1',file=fo)
+print('    bulk metallic glasses:       Root Mean Square Error (RMSE) = 0.9',file=fo)
+print('    bulk metallic glasses:       Mean Absolute Error (MAE)     = 0.8',file=fo)
+
+print('\n'+ lineseparator +'\n',file=fo)
+
 print('    Eigenvalues of elastic constant (stiffness) matrix:   \n',file=fo)
 
 #eigval=linalg.eig(C)
