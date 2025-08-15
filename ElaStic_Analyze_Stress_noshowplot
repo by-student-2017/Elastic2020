@@ -386,6 +386,8 @@ if (os.path.exists('Stress-vs-Strain-Plot_old')):
 if (os.path.exists('Stress-vs-Strain-Plot')):
     os.rename(     'Stress-vs-Strain-Plot','Stress-vs-Strain-Plot_old')
 
+os.mkdir('Stress-vs-Strain-Plot')
+
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#

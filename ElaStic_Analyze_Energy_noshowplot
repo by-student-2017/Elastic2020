@@ -232,6 +232,10 @@ if (os.path.exists('Energy-vs-Strain-Plot_old')):
 if (os.path.exists('Energy-vs-Strain-Plot')):
     os.rename(     'Energy-vs-Strain-Plot','Energy-vs-Strain-Plot_old')
 
+os.mkdir('Energy-vs-Strain-Plot')
+
+#--------------------------------------------------------------------------------------------------
+
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
 #%!%!% ------------ Calculating the second derivative and Cross-Validation Error ----------- %!%!%#
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
