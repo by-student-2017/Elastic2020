@@ -28,6 +28,7 @@ import subprocess
 import shutil
 import matplotlib.pyplot as plt
 from math import factorial
+import statistics
 
 #%!%!%--- CONSTANTS ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
 
@@ -398,7 +399,8 @@ for i in range(1, ECs+1):
     Fit_order = ''.join(filter(str.isdigit, fit_nth))  # old version: Fit_order = fit_nth[0]
     
     if eta_max_list:
-        eta_max = max(eta_max_list)
+        #eta_max = max(eta_max_list) # Max
+        eta_max = statistics.median(eta_max_list) # Median
     else:
         eta_max = 0.030  # maximum Lagrangian strain in bash script
     

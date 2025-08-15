@@ -27,6 +27,7 @@ import math
 import subprocess
 import shutil
 import matplotlib.pyplot as plt
+import statistics
 
 #%!%!%--- SUBROUTINS AND FUNCTIONS ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
 def sortlist(lst1, lst2):
@@ -596,7 +597,8 @@ for i in range(1, NoD+1):
     eta_max_values = []
     for l in range(1, 7):
         if eta_max_lists[l]:
-            eta_max_values.append(max(eta_max_lists[l]))
+            #eta_max_values.append(max(eta_max_lists[l])) # Max
+            eta_max_values.append(statistics.median(eta_max_lists[l])) # Median
         else:
             eta_max_values.append(0.0050)   # maximum Lagrangian strain in bash script
     print(
