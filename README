@@ -151,3 +151,7 @@ Of course, you can just email me: 18709821294@outlook.com
   Note
 =========
 In the 3rd version (i.e., third-order elastic constants), the structures RII, TI, TII, O, M, and N are not supported. This is also the case with the original version from 2013.
+
+  Test
+=========
+- OS: Ubuntu 22.04 LTS (WLS2)
