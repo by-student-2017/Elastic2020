@@ -812,6 +812,7 @@ print('    ',file=fo)
 # C11 = C[0,0], A = 2*C44/(C11-C12)
 print('    Zener Anisotropy Ratio: %8.3f' %(2.0*C[3,3]/(C[0,0]-C[0,1])),file=fo)
 
+print('    ',file=fo)
 print('    Note: ',file=fo)
 print('    The Universal Anisotropy Index Au quantifies elastic anisotropy in polycrystals.',file=fo)
 print('    Au equals zero for isotropic materials and increases with anisotropy.',file=fo)
