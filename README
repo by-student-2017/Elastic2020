@@ -19,7 +19,7 @@ STEP 0.1:
      line with the correct "Elastic2020" path, in the "$HOME/.bashrc" file:
      
      export ElaSticROOT=$HOME/Elastic2020
-     export PATH=$HOME/Elastic2020:$PATH
+     export PATH=$ElaSticROOT:$PATH
      
      Update your environment with the following command and use the "which" command to check if
      the link is established. If the link is established, the absolute path will be displayed.
