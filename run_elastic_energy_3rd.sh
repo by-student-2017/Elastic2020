@@ -33,7 +33,7 @@ awk -v A="$A" '
 ' "$base_input" > "$input_file"
 
 # Create a temporary input file for ElaStic_Setup
-cat <<EOF > set_stress.txt
+cat <<EOF > set_energy_3rd.txt
 1
 3
 case.elastic.in
@@ -42,7 +42,7 @@ case.elastic.in
 EOF
 
 # Run ElaStic_Setup with the input file
-python3 $HOME/Elastic2020/ElaStic_Setup < set_stress.txt
+python3 $HOME/Elastic2020/ElaStic_Setup < set_energy_3rd.txt
 
 # copy pseudo-potentials
 cp *.UPF ./Structures_ESPRESSO/
