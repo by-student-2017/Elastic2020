@@ -68,9 +68,9 @@ for infile in Dst*_*.in; do
   
   cp "$outfile" "./../${subdir}/${base}/$outfile"
 done
+cd ..
 
 # Return to the main directory and run ElaStic_Analysis_Stress
-cd ..
 if [ "$show_plot_flag" == "yes" ]; then
   python3 $HOME/Elastic2020/ElaStic_Analyze
 else
